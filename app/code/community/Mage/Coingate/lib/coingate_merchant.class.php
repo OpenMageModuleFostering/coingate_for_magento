@@ -106,7 +106,7 @@ class CoingateMerchant {
 
     private function set_api_url()
     {
-        $this->api_url = strtolower($this->mode) == 'live' ? 'https://coingate.com/api/' : 'https://sandbox.coingate.com/api/';
+        $this->api_url = strtolower($this->mode) == 'live' ? 'https://api.coingate.com/' : 'https://api-sandbox.coingate.com/';
         $this->api_url .= $this->version;
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>CoinGate_For_Magento</name>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <stability>stable</stability>
     <license uri="https://github.com/coingate/magento-plugin/blob/master/LICENSE">MITL</license>
     <channel>community</channel>
@@ -27,12 +27,12 @@ After the customer pays the invoice, the merchant receives 19.80 euro (20 euro m
 &#xD;
 To be able to use the plugin you have to create an account on &lt;a href="https://coingate.com" target="_blank"&gt;https://coingate.com&lt;/a&gt;&#xD;
 </description>
-    <notes>* Remove CoinGate logs&#xD;
-* Allow to relate CoinGate - Magento payment statuses</notes>
+    <notes>* Update API urls&#xD;
+* Update order cancel action functionality</notes>
     <authors><author><name>CoinGate</name><user>coingate</user><email>info@coingate.com</email></author></authors>
-    <date>2016-11-09</date>
-    <time>12:02:24</time>
-    <contents><target name="magecommunity"><dir name="Mage"><dir name="Coingate"><dir name="Block"><file name="Callback.php" hash="ad228ee9b00f327052a72246fe76b339"/><file name="Form.php" hash="ab93f50ac62fab7b986ccfe4732d63e4"/><file name="Redirect.php" hash="21b349e960636fd441b35d42facaf17d"/></dir><dir name="Model"><file name="CoingateFactory.php" hash="d48055139aa587eaf9490173e83493dd"/><file name="ReceiveCurrencies.php" hash="94f7f39c759012b8e75ec8e6846cae5f"/></dir><dir name="controllers"><file name="PayController.php" hash="ffe09d0ff067e5247351990255d0c472"/></dir><dir name="etc"><file name="config.xml" hash="fe380e522cf7a8c00124f0d282dd8a9a"/><file name="system.xml" hash="dd8cdc7665dc165d18137047670109bf"/></dir><dir name="lib"><file name="coingate_merchant.class.php" hash="af5eb495a82c48d703f2acd45f07cf8a"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Mage_Coingate.xml" hash="cc8a4080d714fd0c50eadf91a77be49c"/></dir></target></contents>
+    <date>2017-04-18</date>
+    <time>11:58:01</time>
+    <contents><target name="magecommunity"><dir name="Mage"><dir name="Coingate"><dir name="Block"><file name="Callback.php" hash="ad228ee9b00f327052a72246fe76b339"/><file name="Form.php" hash="ab93f50ac62fab7b986ccfe4732d63e4"/><file name="Redirect.php" hash="21b349e960636fd441b35d42facaf17d"/></dir><dir name="Model"><file name="CoingateFactory.php" hash="d698d9c29761ae8e7c68b279d62ed3e2"/><file name="ReceiveCurrencies.php" hash="94f7f39c759012b8e75ec8e6846cae5f"/></dir><dir name="controllers"><file name="PayController.php" hash="3d2635fa3a2dac26b5289699f1010b9a"/></dir><dir name="etc"><file name="config.xml" hash="5cc245db13cd3781f7ba714f461e7b51"/><file name="system.xml" hash="c796ca7a6c0259b3a09e64e06eef60d9"/></dir><dir name="lib"><file name="coingate_merchant.class.php" hash="8dc30b243cda139f3fa7f4dc44c6f583"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Mage_Coingate.xml" hash="cc8a4080d714fd0c50eadf91a77be49c"/></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.0.0</min><max>7.0.0</max></php></required></dependencies>
 </package>

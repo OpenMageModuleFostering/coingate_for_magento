@@ -2,7 +2,7 @@
 
 require_once(Mage::getBaseDir() . '/app/code/community/Mage/Coingate/lib/coingate_merchant.class.php');
 
-define('COINGATE_MAGENTO_VERSION', '1.0.5');
+define('COINGATE_MAGENTO_VERSION', '1.0.6');
 
 class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abstract
 {

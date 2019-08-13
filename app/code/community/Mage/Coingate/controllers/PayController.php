@@ -33,6 +33,14 @@ class Mage_Coingate_PayController extends Mage_Core_Controller_Front_Action
     {
         $session = Mage::getSingleton('checkout/session');
         $session->setQuoteId($session->getPayQuoteId(TRUE));
+
+        $order = Mage::getModel('sales/order');
+        $order->load($session->getLastOrderId());
+
+        if ($order->getId()) {
+            $order->cancel()->save();
+        }
+
         $this->_redirect('checkout/cart');
     }
 
@@ -50,7 +58,7 @@ class Mage_Coingate_PayController extends Mage_Core_Controller_Front_Action
         $order->load(Mage::getSingleton('checkout/session')->getLastOrderId());
 
         if ($order->getId()) {
-            $order->setStatus('canceled')->save();
+            $order->cancel()->save();
         }
 
         $this->_redirect('checkout/onepage/failure');
