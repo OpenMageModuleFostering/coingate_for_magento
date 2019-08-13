@@ -1,12 +1,12 @@
 {
     "name": "OpenMageModuleFostering/CoinGate_For_Magento",
     "type": "magento-module",
-    "license": "MIT",
+    "license": "MITL",
     "homepage": "",
-    "description": "Accept payments through the Bitcoin payment network in euros and US dollars in your Megento with CoinGate.com",
+    "description": "Accept Bitcoin on your Magento website through CoinGate.com and receive payouts in euros or US dollars.",
     "authors": [
     {
-        "name": "CoinGate Team",
+        "name": "CoinGate",
         "email": "info@coingate.com"
     }
 ],

@@ -1,21 +1,36 @@
 <?xml version="1.0"?>
 <package>
     <name>CoinGate_For_Magento</name>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <stability>stable</stability>
-    <license uri="https://github.com/coingate/magento-plugin/blob/master/LICENSE.md">MIT</license>
+    <license uri="https://github.com/coingate/magento-plugin/blob/master/LICENSE.md">MITL</license>
     <channel>community</channel>
     <extends/>
-    <summary>Accept payments through the Bitcoin payment network in euros and US dollars in your Megento with CoinGate.com</summary>
-    <description>Bitcoin is an innovative payment network and a new kind of money. It uses peer-to-peer technology to operate with no central authority or banks. Bitcoin is open-source; its design is public, nobody owns or controls Bitcoin and everyone can take part.&#xD;
+    <summary>Accept Bitcoin on your Magento website through CoinGate.com and receive payouts in euros or US dollars.</summary>
+    <description>&lt;b&gt;CoinGate Bitcoin Payment Method&lt;/b&gt;&#xD;
 &#xD;
-CoinGate is a bitcoin payment processor, which allows businesses to receive payments in euros and US dollars through the Bitcoin payment network, seamlessly connecting innovations of Bitcoin with comfort of familiar currencies and user-friendly interface.</description>
-    <notes>* Update CoinGate PHP Merchant Class&#xD;
-* Added debug logs</notes>
-    <authors><author><name>CoinGate Team</name><user>CoinGate</user><email>info@coingate.com</email></author></authors>
-    <date>2015-09-08</date>
-    <time>13:12:50</time>
-    <contents><target name="magecommunity"><dir name="Mage"><dir name="Coingate"><dir name="Block"><file name="Callback.php" hash="0845222d4c5ce4457aab3eb14282ff8d"/><file name="Form.php" hash="ab93f50ac62fab7b986ccfe4732d63e4"/><file name="Redirect.php" hash="21b349e960636fd441b35d42facaf17d"/></dir><dir name="Model"><file name="CoingateFactory.php" hash="e2fba3f2979ef294fed63fe07bb1a977"/><file name="ReceiveCurrencies.php" hash="94f7f39c759012b8e75ec8e6846cae5f"/></dir><dir name="controllers"><file name="PayController.php" hash="ffe09d0ff067e5247351990255d0c472"/></dir><dir name="etc"><file name="config.xml" hash="ad9821f6f4cb68e6e1dc21bb8371088d"/><file name="system.xml" hash="ecf436c082353a952c7906b90726b428"/></dir><dir name="lib"><file name="coingate_merchant.class.php" hash="af5eb495a82c48d703f2acd45f07cf8a"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Mage_Coingate.xml" hash="cc8a4080d714fd0c50eadf91a77be49c"/></dir></target></contents>
+Bitcoin is an innovative payment network and a new kind of money. It uses peer-to-peer technology to operate with no central authority or banks. Bitcoin is open-source; its design is public, nobody owns or controls Bitcoin and everyone can take part.&#xD;
+&#xD;
+This plugin allows Magento stores to accept Bitcoin payments through a Bitcoin payment processor CoinGate, which allows businesses to receive payments in euros and US dollars through the Bitcoin payment network, seamlessly connecting innovations of Bitcoin with comfort of familiar currencies and user-friendly interface.&#xD;
+&#xD;
+&lt;b&gt;How it works&lt;/b&gt;&#xD;
+&#xD;
+When a customer chooses Bitcoin payment option, a CoinGate invoice is generated, which displays the sum to be payed in bitcoins calculated in real-time by comparing bitcoin prices in several biggest bitcoin exchanges, a Bitcoin address and a QR code. The customer can either use a Bitcoin wallet on their smartphone to scan the QR code or use a Bitcoin wallet on their computer to pay for the invoice. The merchants can choose to receive their payments in euros, US dollars or bitcoins. There is only 1% currency conversion fee and no registration, monthy or other fees. The merchants receive their payouts to their bank account once a week.&#xD;
+&#xD;
+&lt;b&gt;Example&lt;/b&gt;&#xD;
+&#xD;
+An item in the store costs 20 euro.&#xD;
+&#xD;
+A customer wants to buy the item and pay with bitcoin. He generates an invoice and at that moment the bitcoin price is 200 euro per bitcoin, so he has to pay 0.1 bitcoins.&#xD;
+&#xD;
+After the customer pays the invoice, the merchant receives 19.80 euro (20 euro minus 1%).&#xD;
+&#xD;
+To be able to use the plugin you have to create an account on &lt;a href="https://coingate.com" target="_blank"&gt;https://coingate.com&lt;/a&gt;</description>
+    <notes>Added "Sort Order" field.</notes>
+    <authors><author><name>CoinGate</name><user>coingate</user><email>info@coingate.com</email></author></authors>
+    <date>2016-03-03</date>
+    <time>15:39:31</time>
+    <contents><target name="magecommunity"><dir name="Mage"><dir name="Coingate"><dir name="Block"><file name="Callback.php" hash="0845222d4c5ce4457aab3eb14282ff8d"/><file name="Form.php" hash="ab93f50ac62fab7b986ccfe4732d63e4"/><file name="Redirect.php" hash="21b349e960636fd441b35d42facaf17d"/></dir><dir name="Model"><file name="CoingateFactory.php" hash="fcb8304d733ae762af40a65781668523"/><file name="ReceiveCurrencies.php" hash="94f7f39c759012b8e75ec8e6846cae5f"/></dir><dir name="controllers"><file name="PayController.php" hash="ffe09d0ff067e5247351990255d0c472"/></dir><dir name="etc"><file name="config.xml" hash="38b4134e86e1f8a617a38eea433c5c03"/><file name="system.xml" hash="7c0eeb2bbd12b9febe32187fcebafd53"/></dir><dir name="lib"><file name="coingate_merchant.class.php" hash="af5eb495a82c48d703f2acd45f07cf8a"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Mage_Coingate.xml" hash="cc8a4080d714fd0c50eadf91a77be49c"/></dir></target></contents>
     <compatible/>
-    <dependencies><required><php><min>5.0.0</min><max>6.0.0</max></php><package><name>curl</name><channel>connect.magentocommerce.com/core</channel><min>7.37.1</min><max></max></package></required></dependencies>
+    <dependencies><required><php><min>5.0.0</min><max>7.0.0</max></php></required></dependencies>
 </package>
