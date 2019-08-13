@@ -2,7 +2,7 @@
 
 require_once(Mage::getBaseDir() . '/app/code/community/Mage/Coingate/lib/coingate_merchant.class.php');
 
-define('COINGATE_MAGENTO_VERSION', '1.0.3');
+define('COINGATE_MAGENTO_VERSION', '1.0.4');
 
 class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abstract
 {
@@ -95,12 +95,21 @@ class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abst
             }
 
             if ($coingate_response['status'] == 'paid') {
+                $mage_status = Mage_Sales_Model_Order::STATE_PROCESSING;
+            }
+            else if ($coingate_response['status'] == 'confirming') {
+                $mage_status = Mage_Sales_Model_Order::STATE_PENDING_PAYMENT;
+            }
+            else if (in_array($coingate_response['status'], array('invalid', 'expired', 'canceled'))) {
+                $mage_status = Mage_Sales_Model_Order::STATE_CANCELED;
+            }
+            else {
+                $mage_status = NULL;
+            }
+
+            if (!is_null($mage_status)) {
                 $order->sendNewOrderEmail()
-                    ->setState(Mage_Sales_Model_Order::STATE_PROCESSING, TRUE)
-                    ->save();
-            } elseif (in_array($coingate_response['status'], array('invalid', 'expired', 'canceled'))) {
-                $order->sendNewOrderEmail()
-                    ->setState(Mage_Sales_Model_Order::STATE_CANCELED, TRUE)
+                    ->setState($mage_status, TRUE)
                     ->save();
             }
         } catch (Exception $e) {
