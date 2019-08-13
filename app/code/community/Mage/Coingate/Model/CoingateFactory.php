@@ -2,7 +2,7 @@
 
 require_once(Mage::getBaseDir() . '/app/code/community/Mage/Coingate/lib/coingate_merchant.class.php');
 
-define('COINGATE_MAGENTO_VERSION', '1.0.6');
+define('COINGATE_MAGENTO_VERSION', '1.0.7');
 
 class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abstract
 {
@@ -111,9 +111,7 @@ class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abst
             }
 
             if (!is_null($mage_status)) {
-                $order->sendNewOrderEmail()
-                    ->setState($mage_status, TRUE)
-                    ->save();
+              $order->setState($mage_status, TRUE)->save();
             }
         } catch (Exception $e) {
             echo get_class($e) . ': ' . $e->getMessage();
