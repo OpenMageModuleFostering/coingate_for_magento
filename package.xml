@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>CoinGate_For_Magento</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <stability>stable</stability>
     <license uri="https://github.com/coingate/magento-plugin/blob/master/LICENSE.md">MIT</license>
     <channel>community</channel>
@@ -10,11 +10,12 @@
     <description>Bitcoin is an innovative payment network and a new kind of money. It uses peer-to-peer technology to operate with no central authority or banks. Bitcoin is open-source; its design is public, nobody owns or controls Bitcoin and everyone can take part.&#xD;
 &#xD;
 CoinGate is a bitcoin payment processor, which allows businesses to receive payments in euros and US dollars through the Bitcoin payment network, seamlessly connecting innovations of Bitcoin with comfort of familiar currencies and user-friendly interface.</description>
-    <notes>First stable release for Magento</notes>
-    <authors><author><name>CoinGate</name><user>CoinGate</user><email>info@coingate.com</email></author></authors>
-    <date>2015-07-08</date>
-    <time>11:02:39</time>
-    <contents></contents>
+    <notes>* Update CoinGate PHP Merchant Class to 1.0.2&#xD;
+* Set Extension User Agent</notes>
+    <authors><author><name>CoinGate Team</name><user>CoinGate</user><email>info@coingate.com</email></author></authors>
+    <date>2015-07-24</date>
+    <time>13:21:32</time>
+    <contents><target name="magecommunity"><dir name="Mage"><dir name="Coingate"><dir name="Block"><file name="Callback.php" hash="0845222d4c5ce4457aab3eb14282ff8d"/><file name="Form.php" hash="ab93f50ac62fab7b986ccfe4732d63e4"/><file name="Redirect.php" hash="21b349e960636fd441b35d42facaf17d"/></dir><dir name="Model"><file name="CoingateFactory.php" hash="ba2676c3d712daba29cbbc8eb8b5393f"/><file name="ReceiveCurrencies.php" hash="94f7f39c759012b8e75ec8e6846cae5f"/></dir><dir name="controllers"><file name="PayController.php" hash="ffe09d0ff067e5247351990255d0c472"/></dir><dir name="etc"><file name="config.xml" hash="3c624a614d6d26fa7c77a91935da2512"/><file name="system.xml" hash="4b1348918fc79e11c9ea691ad8c09e4a"/></dir><dir name="lib"><file name="coingate_merchant.class.php" hash="a4be2b9580ecb4b6c5d2f89bcee8971f"/></dir><file name=".DS_Store" hash="1f14b8e5d4ef517cd3236642604885b0"/></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Mage_Coingate.xml" hash="cc8a4080d714fd0c50eadf91a77be49c"/></dir></target></contents>
     <compatible/>
-    <dependencies><required><php><min>5.5.0</min><max>6.0.0</max></php><extension><name>curl</name><min>7.37.1</min><max/></extension></required></dependencies>
+    <dependencies><required><php><min>5.0.0</min><max>6.0.0</max></php><package><name>curl</name><channel>connect.magentocommerce.com/core</channel><min>7.37.1</min><max></max></package></required></dependencies>
 </package>

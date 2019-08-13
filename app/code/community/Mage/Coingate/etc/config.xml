@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Mage_Coingate>
+            <version>1.0.1</version>
+        </Mage_Coingate>
+    </modules>
+
+    <global>
+        <blocks>
+            <coingate>
+                <class>Mage_Coingate_Block</class>
+            </coingate>
+        </blocks>
+        <models>
+            <coingate>
+                <class>Mage_Coingate_Model</class>
+            </coingate>
+        </models>
+        <resources>
+            <coingate_setup>
+                <setup>
+                    <module>Mage_Coingate</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </coingate_setup>
+            <coingate_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </coingate_write>
+            <coingate_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </coingate_read>
+        </resources>
+    </global>
+    <frontend>
+        <routers>
+            <coingate>
+                <use>standard</use>
+                <args>
+                    <module>Mage_Coingate</module>
+                    <frontName>coingate</frontName>
+                </args>
+            </coingate>
+        </routers>
+    </frontend>
+    <default>
+        <payment>
+            <coingate>
+                <active>0</active>
+                <model>coingate/coingateFactory</model>
+                <app_id>Your APP ID</app_id>
+                <api_key>Your API Key</api_key>
+                <api_secret>Your API Secret</api_secret>
+                <test>0</test>
+                <title>Bitcoin</title>
+                <desc>Pay with Bitcoin via CoinGate</desc>
+            </coingate>
+        </payment>
+    </default>
+</config>
