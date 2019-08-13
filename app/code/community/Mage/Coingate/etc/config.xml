@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Mage_Coingate>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
         </Mage_Coingate>
     </modules>
 
@@ -60,6 +60,11 @@
                 <test>0</test>
                 <title>Bitcoin</title>
                 <desc>Pay with Bitcoin via CoinGate</desc>
+                <invoice_paid>processing</invoice_paid>
+                <invoice_canceled>canceled</invoice_canceled>
+                <invoice_expired>canceled</invoice_expired>
+                <invoice_invalid>canceled</invoice_invalid>
+                <invoice_refunded>refunded</invoice_refunded>
             </coingate>
         </payment>
     </default>

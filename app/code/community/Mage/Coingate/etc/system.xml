@@ -9,7 +9,9 @@
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>0</show_in_store>
-                    <comment>Having trouble? We can help you! Download the log file from var/log/coingate.log  and send it to support@coingate.com</comment>
+                    <comment>
+                        Having trouble? View common issues: https://developer.coingate.com/docs/issues or contact support@coingate.com
+                    </comment>
                     <fields>
                         <active translate="label">
                             <label>Enabled</label>
@@ -61,10 +63,10 @@
                             <show_in_store>0</show_in_store>
                         </api_secret>
                         <receive_currency translate="label">
-                            <label>Currency you want to receive</label>
+                            <label>Receive Currency</label>
                             <frontend_type>select</frontend_type>
                             <source_model>coingate/receiveCurrencies</source_model>
-                            <tooltip>The currency in which you wish to receive your payments</tooltip>
+                            <tooltip>Currency you want to receive when making withdrawal at CoinGate. Please take a note what if you choose EUR or USD you will be asked to verify your business before making a withdrawal at CoinGate.</tooltip>
                             <sort_order>7</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -74,19 +76,73 @@
                             <label>Test mode?</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <tooltip>Live (coingate.com) is for production and Sandbox (sandbox.coingate.com) is for testing purpose.</tooltip>
                             <sort_order>8</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                         </test>
-						      <sort_order translate="label">
-							       <label>Sort Order</label>
-							       <frontend_type>text</frontend_type>
-							       <sort_order>9</sort_order>
-							       <show_in_default>1</show_in_default>
-							       <show_in_website>1</show_in_website>
-							       <show_in_store>0</show_in_store>
-						      </sort_order>
+                        <sort_order translate="label">
+                           <label>Sort Order</label>
+                           <frontend_type>text</frontend_type>
+                           <sort_order>9</sort_order>
+                           <show_in_default>1</show_in_default>
+                           <show_in_website>1</show_in_website>
+                           <show_in_store>0</show_in_store>
+                        </sort_order>
+                        <invoice>
+                            <label>Payment Statuses</label>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                      </invoice>
+                      <invoice_paid translate="label">
+                          <label>Paid</label>
+                          <frontend_type>select</frontend_type>
+                          <source_model>adminhtml/system_config_source_order_status</source_model>
+                          <sort_order>120</sort_order>
+                          <show_in_default>1</show_in_default>
+                          <show_in_website>1</show_in_website>
+                          <show_in_store>1</show_in_store>
+                      </invoice_paid>
+                      <invoice_canceled translate="label">
+                          <label>Canceled</label>
+                          <frontend_type>select</frontend_type>
+                          <source_model>adminhtml/system_config_source_order_status</source_model>
+                          <sort_order>130</sort_order>
+                          <show_in_default>1</show_in_default>
+                          <show_in_website>1</show_in_website>
+                          <show_in_store>1</show_in_store>
+                      </invoice_canceled>
+                      <invoice_expired translate="label">
+                          <label>Expired</label>
+                          <frontend_type>select</frontend_type>
+                          <source_model>adminhtml/system_config_source_order_status</source_model>
+                          <sort_order>140</sort_order>
+                          <show_in_default>1</show_in_default>
+                          <show_in_website>1</show_in_website>
+                          <show_in_store>1</show_in_store>
+                      </invoice_expired>
+                      <invoice_invalid translate="label">
+                          <label>Invalid</label>
+                          <frontend_type>select</frontend_type>
+                          <source_model>adminhtml/system_config_source_order_status</source_model>
+                          <sort_order>150</sort_order>
+                          <show_in_default>1</show_in_default>
+                          <show_in_website>1</show_in_website>
+                          <show_in_store>1</show_in_store>
+                      </invoice_invalid>
+                      <invoice_refunded translate="label">
+                          <label>Refunded</label>
+                          <frontend_type>select</frontend_type>
+                          <source_model>adminhtml/system_config_source_order_status</source_model>
+                          <sort_order>150</sort_order>
+                          <show_in_default>1</show_in_default>
+                          <show_in_website>1</show_in_website>
+                          <show_in_store>1</show_in_store>
+                      </invoice_refunded>
                     </fields>
                 </coingate>
             </groups>

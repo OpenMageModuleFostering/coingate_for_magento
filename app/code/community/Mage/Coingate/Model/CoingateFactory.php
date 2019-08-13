@@ -2,7 +2,7 @@
 
 require_once(Mage::getBaseDir() . '/app/code/community/Mage/Coingate/lib/coingate_merchant.class.php');
 
-define('COINGATE_MAGENTO_VERSION', '1.0.4');
+define('COINGATE_MAGENTO_VERSION', '1.0.5');
 
 class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abstract
 {
@@ -54,8 +54,6 @@ class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abst
             $coingate_response = json_decode($coingate->response, TRUE);
 
             return $coingate_response['payment_url'];
-        } else {
-            $this->logMe('Create order', $cgConfig, $coingate);
         }
 
         return FALSE;
@@ -84,8 +82,6 @@ class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abst
 
             if (!$coingate->success) {
                 throw new Exception('CoinGate Order #' . $_REQUEST['id'] . ' does not exist');
-            } else {
-                $this->logMe('Validate order', $cgConfig, $coingate);
             }
 
             $coingate_response = json_decode($coingate->response, TRUE);
@@ -94,17 +90,24 @@ class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abst
                 throw new Exception('Something wrong with callback');
             }
 
-            if ($coingate_response['status'] == 'paid') {
-                $mage_status = Mage_Sales_Model_Order::STATE_PROCESSING;
-            }
-            else if ($coingate_response['status'] == 'confirming') {
-                $mage_status = Mage_Sales_Model_Order::STATE_PENDING_PAYMENT;
-            }
-            else if (in_array($coingate_response['status'], array('invalid', 'expired', 'canceled'))) {
-                $mage_status = Mage_Sales_Model_Order::STATE_CANCELED;
-            }
-            else {
-                $mage_status = NULL;
+            switch ($coingate_response['status']) {
+                case 'paid':
+                    $mage_status = $cgConfig['invoice_paid'];
+                    break;
+                case 'canceled':
+                    $mage_status = $cgConfig['invoice_canceled'];
+                    break;
+                case 'expired':
+                    $mage_status = $cgConfig['invoice_expired'];
+                    break;
+                case 'invalid':
+                    $mage_status = $cgConfig['invoice_invalid'];
+                    break;
+                case 'refunded':
+                    $mage_status = $cgConfig['invoice_refunded'];
+                    break;
+                default:
+                  $mage_status = NULL;
             }
 
             if (!is_null($mage_status)) {
@@ -127,21 +130,5 @@ class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abst
                 'user_agent'    => 'CoinGate - Magento Extension v' . COINGATE_MAGENTO_VERSION
             )
         );
-    }
-
-    private function logMe($name, $cgConfig, $coingate, $customData = '')
-    {
-        Mage::Log($name
-            . ' - App ID: ' . $cgConfig['app_id']
-            . '; Mode: ' . ($cgConfig['test'] == '1' ? 'sandbox' : 'live')
-            . '; HTTP Status: ' . $coingate->status_code
-            . '; Response: ' . $coingate->response
-            . '; cURL Error: ' . json_encode($coingate->curl_error)
-            . '; PHP Version: ' . phpversion()
-            . '; cURL Version: ' . json_encode(curl_version())
-            . '; Magento Version: ' . Mage::getVersion()
-            . '; Plugin Version: ' . COINGATE_MAGENTO_VERSION
-            . $customData
-            . "\n", null, 'coingate.log', true);
     }
 }
