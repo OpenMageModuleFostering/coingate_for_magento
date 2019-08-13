@@ -2,7 +2,7 @@
 
 require_once(Mage::getBaseDir() . '/app/code/community/Mage/Coingate/lib/coingate_merchant.class.php');
 
-define('COINGATE_MAGENTO_VERSION', '1.0.1');
+define('COINGATE_MAGENTO_VERSION', '1.0.2');
 
 class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abstract
 {
@@ -54,6 +54,8 @@ class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abst
             $coingate_response = json_decode($coingate->response, TRUE);
 
             return $coingate_response['payment_url'];
+        } else {
+            $this->logMe('Create order', $cgConfig, $coingate);
         }
 
         return FALSE;
@@ -70,8 +72,9 @@ class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abst
             $payment = $order->getPayment();
             $token = $payment->getAdditionalInformation('coingate_order_token');
 
-            if ($token == '' || $_GET['token'] != $token)
+            if ($token == '' || $_GET['token'] != $token) {
                 throw new Exception('Token: 1:' . $_GET['token'] . ' : 2:' . $token . ' do not match');
+            }
 
             $cgConfig = Mage::getStoreConfig('payment/coingate');
 
@@ -79,13 +82,17 @@ class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abst
 
             $coingate->get_order($_REQUEST['id']);
 
-            if (!$coingate->success)
-                throw new Exception('CoinGate Order #' . $order->increment_id . ' does not exists');
+            if (!$coingate->success) {
+                throw new Exception('CoinGate Order #' . $_REQUEST['id'] . ' does not exist');
+            } else {
+                $this->logMe('Validate order', $cgConfig, $coingate);
+            }
 
             $coingate_response = json_decode($coingate->response, TRUE);
 
-            if (!is_array($coingate_response))
+            if (!is_array($coingate_response)) {
                 throw new Exception('Something wrong with callback');
+            }
 
             if ($coingate_response['status'] == 'paid') {
                 $order->sendNewOrderEmail()
@@ -111,5 +118,21 @@ class Mage_Coingate_Model_CoingateFactory extends Mage_Payment_Model_Method_Abst
                 'user_agent'    => 'CoinGate - Magento Extension v' . COINGATE_MAGENTO_VERSION
             )
         );
+    }
+
+    private function logMe($name, $cgConfig, $coingate, $customData = '')
+    {
+        Mage::Log($name
+            . ' - App ID: ' . $cgConfig['app_id']
+            . '; Mode: ' . ($cgConfig['test'] == '1' ? 'sandbox' : 'live')
+            . '; HTTP Status: ' . $coingate->status_code
+            . '; Response: ' . $coingate->response
+            . '; cURL Error: ' . json_encode($coingate->curl_error)
+            . '; PHP Version: ' . phpversion()
+            . '; cURL Version: ' . json_encode(curl_version())
+            . '; Magento Version: ' . Mage::getVersion()
+            . '; Plugin Version: ' . COINGATE_MAGENTO_VERSION
+            . $customData
+            . "\n", null, 'coingate.log', true);
     }
 }
