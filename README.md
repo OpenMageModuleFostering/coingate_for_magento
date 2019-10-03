@@ -1,3 +1,5 @@
+
+
 ## Original Package Description
 
 Accept Bitcoin on your Magento website through CoinGate.com and receive payouts in euros or US dollars.
