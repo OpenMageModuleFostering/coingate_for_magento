@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/CoinGate_For_Magento",
+    "name": "OpenMageModuleFostering\/CoinGate_For_Magento",
     "type": "magento-module",
     "license": "MITL",
     "homepage": "",
     "description": "Accept Bitcoin on your Magento website through CoinGate.com and receive payouts in euros or US dollars.",
     "authors": [
-    {
-        "name": "CoinGate",
-        "email": "info@coingate.com"
-    }
-],
+        {
+            "name": "CoinGate",
+            "email": "info@coingate.com"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
